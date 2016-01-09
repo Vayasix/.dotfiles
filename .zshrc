@@ -1,3 +1,30 @@
+#-------------------------- PATH Settings ------------------------------
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# brew cask alias, ~/Applications --> /Applications (Added on 12/25,2015)
+# export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+#zsh-completions 
+fpath=(/usr/local/share/zsh-completions $fpath)
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/HIROKI/.oh-my-zsh
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+#anyenv (12/25, 2015) 
+
+if [ -d $HOME/.anyenv ] ; then
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init -)"
+    #path to shims
+    for D in `ls $HOME/.anyenv/envs`
+    do
+        export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+    done
+fi
+
+#------------------------- /PATH Settings ------------------------------
 
 #-------------------------- alias -----------------------------------
 alias ls='ls -aF'
@@ -9,12 +36,6 @@ alias cp='cp -i'
 #-------------------------- /alias -----------------------------------
 
 # -------------------  zsh (12/25, 2015) ----------------------------------
-export PATH=/usr/local/bin:$PATH
-# brew cask alias, ~/Applications --> /Applications (Added on 12/25,2015)
-# export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-#zsh-completions 
-fpath=(/usr/local/share/zsh-completions $fpath)
 
 setopt no_beep           # ビープ音を鳴らさないようにする
 setopt auto_cd           # ディレクトリ名の入力のみで移動する
@@ -33,13 +54,9 @@ setopt list_packed             # 補完候補をできるだけ詰めて表示�
 setopt list_types              # 補完候補にファイルの種類も表示する
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小文字を区別しない
 
-
 # ---------------------- /zsh --------------------------------------------
 
 # ------------------ oh-my-zsh setting (12/25, 2015)-----------------------
-
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/HIROKI/.oh-my-zsh
 
 # Set the theme: -->  ~/.oh-my-zsh/themes/
 # Theme:==> https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -85,17 +102,12 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+#plugins ->  ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git osx bundler brew)
 
 # User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -111,38 +123,9 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # ------------------ /oh-my-zsh setting ------------------------------
 
-#------------------ anyenv (12/25, 2015) ----------------------------
-
-if [ -d $HOME/.anyenv ] ; then
-    export PATH="$HOME/.anyenv/bin:$PATH"
-    eval "$(anyenv init -)"
-    #path to shims
-    for D in `ls $HOME/.anyenv/envs`
-    do
-        export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
-    done
-fi
-
-#------------------ /anyenv -------------------------------------------
-
 #--------------------- brew (12/25, 2015) ------------------------------
-
 #alias
 alias rm="trash"
-
-
 #--------------------------- /brew ---------------------------------
