@@ -199,6 +199,26 @@ NeoBundle 'guileen/vim-node-dict'
 au FileType javascript set dictionary+=$HOME/.vim/bundle/vim-node-dict/dict/node.dict
 
 
+"plugin for TypeScript autocompletion/syntax
+"NeoBundle 'Quramy/tsuquyomi'  (url: https://github.com/Quramy/tsuquyomi)
+NeoBundle 'https://github.com/leafgarland/typescript-vim.git'
+NeoBundle 'https://github.com/clausreinke/typescript-tools.vim'
+filetype plugin on
+au BufRead,BufNewFile *.ts        setlocal filetype=typescript
+set rtp+=$HOME/.vim/bundle/typescript-tools.vim/
+let g:TSS = ['nodejs','$HOME/.anyenv/envs/ndenv/versions/v4.2.4/bin/tss']
+
+
+"Syntax file for JavaScript libraries
+NeoBundle 'https://github.com/othree/javascript-libraries-syntax.vim.git'
+let g:used_javascript_libs='jquery,backbone,angularjs,react,requirejs,jasmine'
+"Support libs
+"id:jquery,underscore,backbone,prelude,angularjs,angularui,angularuirouter,react,flux,requirejs,sugar,jasmine,chai,handlebars
+
+
+"AngularJS で htmlに書いた時のエラーチェック回避
+"let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "ng-']
+
 "----------/ javascript IDE-like --------------------
 
 "================== /neobundle設定 ==================================================

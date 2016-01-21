@@ -21,7 +21,13 @@ if [ -d $HOME/.anyenv ] ; then
     for D in `ls $HOME/.anyenv/envs`
     do
         export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+        for V in `ls $HOME/.anyenv/envs/$D/versions`
+            do
+                export PATH="$HOME/.anyenv/envs/$D/versions/$V/bin:$PATH"
+                export PATH="$HOME/.anyenv/envs/$D/versions/$V/lib:$PATH"
+            done
     done
+    
 fi
 
 #------------------------- /PATH Settings ------------------------------
@@ -32,6 +38,17 @@ alias ll='ls -l'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
+
+# 現在 mongodb と redisを自動起動する設定にしている 
+# 手動起動の際はこれを使う
+# mongod --config /usr/local/etc/mongod.conf
+
+#mongo server起動
+alias mongodon='mongod --dbpath /usr/local/var/mongodb --journal'
+alias mongodrepair='mongod --dbpath /usr/local/var/mongodb --repair'
+
+#redis 停止
+alias redisoff='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
 
 #-------------------------- /alias -----------------------------------
 
@@ -129,3 +146,20 @@ source $ZSH/oh-my-zsh.sh
 #alias
 alias rm="trash"
 #--------------------------- /brew ---------------------------------
+
+
+#remote file editing
+#vim scp://ユーザ名@リモートホスト(IPアドレス)//編集対象のファイル
+#vim scp://lifexme@lifexme.xsrv.jp:10022//home/lifexme/meetpid.com/
+export xsrv="lifexme@lifexme.xsrv.jp:10022//home/lifexme"
+
+
+#-----------AWS instance, ssh Login -----------------------
+# AmazonLinux instance 
+#これまで作った インスタンス
+#
+# aws1: AmazonLinux meetpidの事前登録ページ用
+alias aws1='ssh -i ~/.mememe/KEY_AWS/"HirokiAL.pem" ec2-user@ec2-52-53-236-250.us-west-1.compute.amazonaws.com'
+
+
+#------------------- /AWS ------------------------------------------
