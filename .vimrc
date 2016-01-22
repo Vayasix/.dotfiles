@@ -24,8 +24,14 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "============ NeoBundle プラグイン設定 ================================================
 
 " originalrepos on github
-" カラーテーマ
+" VIM Color
+" solarized
+NeoBundle 'altercation/vim-colors-solarized'
+" molokai
 NeoBundle 'tomasr/molokai'
+
+
+
 
 "カッコを自動的に閉じる
 NeoBundle 'Townk/vim-autoclose'
@@ -37,6 +43,7 @@ NeoBundleLazy 'tpope/vim-endwise', {
 "ランチャー、ファイラー
 "https://github.com/Shougo/unite.vim
 NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'ujihisa/unite-colorscheme'
 " unite {{{
 let g:unite_enable_start_insert=1
 nmap <silent> <C-u><C-b> :<C-u>Unite buffer<CR>
@@ -290,7 +297,13 @@ set mousemodel=popup
 "Syntax highlight ON
 syntax on 
 "color scheme
-colorscheme molokai
+"colorscheme molokai
+
+"solarized
+syntax enable
+set background=dark
+colorscheme solarized
+let g:solarized_termcolors=256
 
 "Display the cursor position on the last line of the screen or in the status line of a window
 set ruler

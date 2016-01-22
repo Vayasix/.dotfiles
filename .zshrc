@@ -6,7 +6,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 #zsh-completions 
 fpath=(/usr/local/share/zsh-completions $fpath)
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/HIROKI/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # ssh
@@ -78,8 +78,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小�
 # Set the theme: -->  ~/.oh-my-zsh/themes/
 # Theme:==> https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="random" <-- change everytime
-#ZSH_THEME="cordial"
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="blinks"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -143,8 +143,6 @@ source $ZSH/oh-my-zsh.sh
 # ------------------ /oh-my-zsh setting ------------------------------
 
 #--------------------- brew (12/25, 2015) ------------------------------
-#alias
-alias rm="trash"
 #--------------------------- /brew ---------------------------------
 
 
