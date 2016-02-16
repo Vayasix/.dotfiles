@@ -40,15 +40,19 @@ alias mv='mv -i'
 alias cp='cp -i'
 
 # 現在 mongodb と redisを自動起動する設定にしている 
-# 手動起動の際はこれを使う
-# mongod --config /usr/local/etc/mongod.conf
-
 #mongo server起動
-alias mongodon='mongod --dbpath /usr/local/var/mongodb --journal'
-alias mongodrepair='mongod --dbpath /usr/local/var/mongodb --repair'
+alias mongodrun='mongod --fork --config /usr/local/etc/mongod.conf &'
+#alias mongodon='mongod --dbpath /usr/local/var/db/mongo --journal'
+alias mongodrepair='mongod --dbpath /usr/local/var/db/mongo --repair'
+
+#meetpid用に mongo
+alias mongodmprun='mongod --fork --logpath $HOME/Work/meetpid/meetpid-web/db/logs/log.txt --nojournal --noprealloc --dbpath $HOME/Work/meetpid/meetpid-web/db'
+alias mongodrepair='mongod --dbpath $HOME/Work/meetpid/meetpid-web/db/mongo --repair'
+#mongo 起動確認
+#ps -ef | grep mongod
 
 #redis 停止
-alias redisoff='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
+#alias redisoff='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
 
 #-------------------------- /alias -----------------------------------
 
@@ -79,7 +83,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小�
 # Theme:==> https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="random" <-- change everytime
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="blinks"
+#ZSH_THEME="blinks"
+ZSH_THEME="af-magic"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

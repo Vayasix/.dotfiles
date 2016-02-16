@@ -147,7 +147,6 @@ let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
 set statusline+=%#warningmsg# "エラーメッセージの書式
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-"let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
 "let g:syntastic_mode_map = {
 "      \ 'mode': 'active',
 "      \ 'active_filetypes': ['javascript'],
@@ -196,7 +195,8 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
  
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
-let g:syntastic_javascript_checker = "jshint"
+"let g:syntastic_javascript_checker = 'jshint'
+let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
  
 " ドキュメントジェネレータ
 NeoBundle 'heavenshell/vim-jsdoc'
@@ -225,6 +225,13 @@ let g:used_javascript_libs='jquery,backbone,angularjs,react,requirejs,jasmine'
 
 "AngularJS で htmlに書いた時のエラーチェック回避
 "let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "ng-']
+
+
+"JSX syntax "https://github.com/mxw/vim-jsx
+NeoBundle 'https://github.com/mxw/vim-jsx.git'
+let g:jsx_ext_required = 0
+
+
 
 "----------/ javascript IDE-like --------------------
 
@@ -331,5 +338,3 @@ set clipboard=unnamed,autoselect
 "Set the command window height to 2 lines, to avoid many cases of having to
 "press <Enter> to continue
 set cmdheight=2
-
-
