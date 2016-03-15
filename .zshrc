@@ -1,5 +1,6 @@
 #-------------------------- PATH Settings ------------------------------
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+#export PATH="/bin:/usr/bin:/usr/local/bin:/usr/sbin:/sbin"
 # brew cask alias, ~/Applications --> /Applications (Added on 12/25,2015)
 # export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -18,17 +19,32 @@ if [ -d $HOME/.anyenv ] ; then
     export PATH="$HOME/.anyenv/bin:$PATH"
     eval "$(anyenv init -)"
     #path to shims
-    for D in `ls $HOME/.anyenv/envs`
+    for env in `ls $HOME/.anyenv/envs`
     do
-        export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
-        for V in `ls $HOME/.anyenv/envs/$D/versions`
+        export PATH="$HOME/.anyenv/envs/$env/shims:$PATH"
+        for ver in `ls $HOME/.anyenv/envs/$env/versions`
             do
-                export PATH="$HOME/.anyenv/envs/$D/versions/$V/bin:$PATH"
-                export PATH="$HOME/.anyenv/envs/$D/versions/$V/lib:$PATH"
+                export PATH="$HOME/.anyenv/envs/$env/versions/$ver/bin:$PATH"
             done
     done
     
 fi
+
+#anaconda
+#export PATH="$HOME/anaconda/bin:$PATH"
+
+# gnu gcc
+export PATH="/usr/local/gcc-5.3.0/bin:$PATH"
+alias gcc='gcc-5.3.0'
+alias cc='gcc-5.3.0'
+alias g++='g++-5.3.0'
+alias c++='c++-5.3.0'
+alias cpp='cpp-5.3.0'
+
+export C_INCLUDE_PATH="/usr/local/gcc-5.3.0/include:$C_INCLUDE_PATH"
+export CPLUS_INCLUDE_PATH="/usr/local/gcc-5.3.0/include:$CPLUS_INCLUDE_PATH" 
+export LIBRARY_PATH="/usr/local/lib:/usr/lib/:$LD_LIBRARY_PATH"
+#export LD_LIBRARY_PATH="/usr/local/gcc-5.3.0/lib" 
 
 #------------------------- /PATH Settings ------------------------------
 
@@ -166,3 +182,5 @@ alias aws1='ssh -i ~/.mememe/KEY_AWS/"HirokiAL.pem" ec2-user@ec2-52-53-236-250.u
 
 
 #------------------- /AWS ------------------------------------------
+
+alias wplocal="cd /Applications/MAMP/htdocs/wordpress/wp-content/themes/sosimple"

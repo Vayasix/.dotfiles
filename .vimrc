@@ -40,11 +40,19 @@ NeoBundle 'Townk/vim-autoclose'
 NeoBundleLazy 'tpope/vim-endwise', {
   \ 'autoload' : { 'insert' : 1,}}
 
-"ランチャー、ファイラー
+
+"ファイルオープン/ ランチャー、ファイラー
 "https://github.com/Shougo/unite.vim
 NeoBundle 'Shougo/unite.vim'
 "NeoBundle 'ujihisa/unite-colorscheme'
-" unite {{{
+" ファイル履歴を記録
+NeoBundle 'Shougo/neomru.vim', {
+  \ 'depends' : 'Shougo/unite.vim'
+  \ }
+
+""""""""""""""""""""""""""""""""""""""""""""""
+" Unit.vim setting 
+""""""""""""""""""""""""""""""""""""""""""""""
 let g:unite_enable_start_insert=1
 nmap <silent> <C-u><C-b> :<C-u>Unite buffer<CR>
 nmap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
@@ -52,17 +60,17 @@ nmap <silent> <C-u><C-r> :<C-u>Unite -buffer-name=register register<CR>
 nmap <silent> <C-u><C-m> :<C-u>Unite file_mru<CR>
 nmap <silent> <C-u><C-u> :<C-u>Unite buffer file_mru<CR>
 nmap <silent> <C-u><C-a> :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" split window (horizontal)
 au FileType unite nmap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite imap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite nmap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite imap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+" split window (vertical)
+au FileType unite nmap <silent> <buffer> <expr> <C-k> unite#do_action('vsplit')
+au FileType unite imap <silent> <buffer> <expr> <C-k> unite#do_action('vsplit')
+"ESC key 2 times --> quit
 au FileType unite nmap <silent> <buffer> <ESC><ESC> q
 au FileType unite imap <silent> <buffer> <ESC><ESC> <ESC>q
-" }}}
-" ファイル履歴を記録
-NeoBundle 'Shougo/neomru.vim', {
-  \ 'depends' : 'Shougo/unite.vim'
-  \ }
+"""""""""""""""""""""""""""""""""""""""""""""""
+
 
 
 "vimからシェルを使えるようになる
@@ -135,6 +143,12 @@ NeoBundle 'scrooloose/nerdtree'
 "スニペット
 "NeoBundle 'Shougo/neosnippet'
 
+" コメントON/OFFを手軽に実行
+NeoBundle 'tomtom/tcomment_vim'
+
+" ログファイルを色づけしてくれる
+NeoBundle 'vim-scripts/AnsiEsc.vim'
+
 
 "==================シンタックスチェック======================
 "syntaxチェックを行ってくれる、複数言語対応
@@ -153,7 +167,30 @@ set statusline+=%*
 "      \ 'passive_filetypes': []
 "      \ }
 
-"------------ javascript IDE-like ---------------------
+
+" コメントアウトを切り替えるマッピング
+NeoBundle "tyru/caw.vim"
+" \c でカーソル行をコメントアウト
+" 再度 \c でコメントアウトを解除
+" 選択してから複数行の \c も可能
+nmap \c <Plug>(caw:I:toggle)
+vmap \c <Plug>(caw:I:toggle)
+" \C でコメントアウトの解除
+nmap \C <Plug>(caw:I:uncomment)
+vmap \C <Plug>(caw:I:uncomment)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" C++
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+NeoBundle "Valloric/YouCompleteMe"
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" javascript IDE-like 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " https://gist.github.com/Layzie/4587591
 "gf でrequire()のモジュールにジャンプ
 NeoBundle 'moll/vim-node'
@@ -210,7 +247,6 @@ au FileType javascript set dictionary+=$HOME/.vim/bundle/vim-node-dict/dict/node
 "NeoBundle 'Quramy/tsuquyomi'  (url: https://github.com/Quramy/tsuquyomi)
 NeoBundle 'https://github.com/leafgarland/typescript-vim.git'
 NeoBundle 'https://github.com/clausreinke/typescript-tools.vim'
-filetype plugin on
 au BufRead,BufNewFile *.ts        setlocal filetype=typescript
 set rtp+=$HOME/.vim/bundle/typescript-tools.vim/
 let g:TSS = ['nodejs','$HOME/.anyenv/envs/ndenv/versions/v4.2.4/bin/tss']
@@ -233,17 +269,37 @@ let g:jsx_ext_required = 0
 
 
 
-"----------/ javascript IDE-like --------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Other Language
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Rails basic
+NeoBundle 'tpope/vim-rails'
+" Rails auto-insert - end - 
+NeoBundle 'tpope/vim-endwise'
+
+
+" rsense
+"NeoBundle 'NigoroJr/rsense'
+"NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
+"    \ 'autoload' : { 'insert' : 1, 'filetype' : 'ruby', } }
+
+" 補完の設定 neocomplete.vimで.や::を入力したときにオムニ補完が有効に
+"if !exists('g:neocomplete#force_omni_input_patterns')
+"  let g:neocomplete#force_omni_input_patterns = {}
+"endif
+"let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+"let g:rsenseUseOmniFunc = 1
 
 "================== /neobundle設定 ==================================================
+filetype plugin on
+filetype plugin indent on     " required!
 
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
 
 call neobundle#end()
-
-"ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
-filetype plugin indent on     " required!
 
 
 
