@@ -92,13 +92,13 @@ nmap <silent> vp :<C-u>VimShellPop<CR>
 "Vim に非同期処理
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
+      \     'windows' : 'make -f make_mingw32.mak',
       \     'cygwin' : 'make -f make_cygwin.mak',
       \     'mac' : 'make -f make_mac.mak',
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-
+" 'windows': 'tools\\update-dll-mingw',
 
 " Neocomplete 補完機能 luaが無いと動かない
 if has('lua')
@@ -120,6 +120,34 @@ let g:neocomplete#sources#tags#cache_limit_size   = 30000000
 let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 " }}}
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""
+" Quickrun setting 
+" 以下のサイト良い：
+" quickrunで部分コンパイル:  http://auewe.hatenablog.com/entry/2013/12/25/033416
+" quickrunの詳細： http://d.hatena.ne.jp/osyo-manga/20130311/1363012363
+""""""""""""""""""""""""""""""""""""""""""""""
+NeoBundle 'thinca/vim-quickrun'
+"quickrun default config
+"https://github.com/thinca/vim-quickrun/blob/637aa0f9eab485874eb3606be35586735855d880/autoload/quickrun.vim#L16
+
+" runner/vimproc/updatetime で出力バッファの更新間隔をミリ秒で設定可能
+" vimproc をかませていることで非同期処理を実現
+let g:quickrun_config = {
+\   "_" : {
+\       "runner" : "vimproc", 
+\       "runner/vimproc/updatetime" : 60
+\   }
+\}
+
+" <C-c> で実行を強制終了させる
+" quickrun.vim が実行していない場合には <C-c> を呼び出す
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 "ヤンク履歴を保持
@@ -178,6 +206,12 @@ vmap \c <Plug>(caw:I:toggle)
 " \C でコメントアウトの解除
 nmap \C <Plug>(caw:I:uncomment)
 vmap \C <Plug>(caw:I:uncomment)
+
+
+" latex setting
+if filereadable(expand('~/.vimrc.local'))
+    source ~/.vimrc.local
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -269,6 +303,7 @@ let g:jsx_ext_required = 0
 
 
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other Language
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -329,7 +364,7 @@ set expandtab
 "set tabstop=2
 
 " Map leader to ,
-let mapleader=','
+let mapleader=""
 
 "Buffer
 set hidden 
@@ -349,6 +384,14 @@ set smartcase
 " Directories for swp files
 set nobackup
 set noswapfile
+
+" 最後のカーソル位置を復元する
+if has("autocmd")
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal! g'\"" |
+    \ endif
+endif
 
 "*************************************************************
 "" Visual Settings

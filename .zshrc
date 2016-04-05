@@ -46,6 +46,8 @@ export CPLUS_INCLUDE_PATH="/usr/local/gcc-5.3.0/include:$CPLUS_INCLUDE_PATH"
 export LIBRARY_PATH="/usr/local/lib:/usr/lib/:$LD_LIBRARY_PATH"
 #export LD_LIBRARY_PATH="/usr/local/gcc-5.3.0/lib" 
 
+#LATEX
+PATH=$PATH:/usr/local/texlive/2015/bin/x86_64-darwin/
 #------------------------- /PATH Settings ------------------------------
 
 #-------------------------- alias -----------------------------------
