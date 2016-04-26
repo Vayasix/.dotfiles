@@ -217,7 +217,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " C++
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-NeoBundle "Valloric/YouCompleteMe"
+"NeoBundle 'Valloric/YouCompleteMe'
 "let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 

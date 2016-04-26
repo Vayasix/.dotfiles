@@ -1,6 +1,5 @@
 #-------------------------- PATH Settings ------------------------------
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-#export PATH="/bin:/usr/bin:/usr/local/bin:/usr/sbin:/sbin"
 # brew cask alias, ~/Applications --> /Applications (Added on 12/25,2015)
 # export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -57,6 +56,8 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 
+alias latexmk='latexmk -pvc'
+
 # 現在 mongodb と redisを自動起動する設定にしている 
 #mongo server起動
 alias mongodrun='mongod --fork --config /usr/local/etc/mongod.conf &'
@@ -64,8 +65,8 @@ alias mongodrun='mongod --fork --config /usr/local/etc/mongod.conf &'
 alias mongodrepair='mongod --dbpath /usr/local/var/db/mongo --repair'
 
 #meetpid用に mongo
-alias mongodmprun='mongod --fork --logpath $HOME/Work/meetpid/meetpid-web/db/logs/log.txt --nojournal --noprealloc --dbpath $HOME/Work/meetpid/meetpid-web/db'
-alias mongodrepair='mongod --dbpath $HOME/Work/meetpid/meetpid-web/db/mongo --repair'
+#alias mongodmprun='mongod --fork --logpath $HOME/Work/meetpid/meetpid-web/db/logs/log.txt --nojournal --noprealloc --dbpath $HOME/Work/meetpid/meetpid-web/db'
+#alias mongodrepair='mongod --dbpath $HOME/Work/meetpid/meetpid-web/db/mongo --repair'
 #mongo 起動確認
 #ps -ef | grep mongod
 
@@ -104,43 +105,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小�
 #ZSH_THEME="blinks"
 ZSH_THEME="af-magic"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
+# Time stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 #plugins ->  ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -150,7 +117,7 @@ plugins=(git osx bundler brew)
 # User configuration
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
+# manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
@@ -162,27 +129,4 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
 # ------------------ /oh-my-zsh setting ------------------------------
-
-#--------------------- brew (12/25, 2015) ------------------------------
-#--------------------------- /brew ---------------------------------
-
-
-#remote file editing
-#vim scp://ユーザ名@リモートホスト(IPアドレス)//編集対象のファイル
-#vim scp://lifexme@lifexme.xsrv.jp:10022//home/lifexme/meetpid.com/
-export xsrv="lifexme@lifexme.xsrv.jp:10022//home/lifexme"
-
-
-#-----------AWS instance, ssh Login -----------------------
-# AmazonLinux instance 
-#これまで作った インスタンス
-#
-# aws1: AmazonLinux meetpidの事前登録ページ用
-alias aws1='ssh -i ~/.mememe/KEY_AWS/"HirokiAL.pem" ec2-user@ec2-52-53-236-250.us-west-1.compute.amazonaws.com'
-
-
-#------------------- /AWS ------------------------------------------
-
-alias wplocal="cd /Applications/MAMP/htdocs/wordpress/wp-content/themes/sosimple"
