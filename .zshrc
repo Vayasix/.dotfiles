@@ -1,7 +1,7 @@
 #-------------------------- PATH Settings ------------------------------
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # brew cask alias, ~/Applications --> /Applications (Added on 12/25,2015)
-# export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 #zsh-completions 
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -28,25 +28,34 @@ if [ -d $HOME/.anyenv ] ; then
     done
     
 fi
+# To use Homebrew's directories rather than ~/.pyenv add to your profile:
+# export PYENV_ROOT=/usr/local/var/pyenv
+#
+# To enable shims and autocompletion add to your profile:
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 #anaconda
 #export PATH="$HOME/anaconda/bin:$PATH"
 
 # gnu gcc
-export PATH="/usr/local/gcc-5.3.0/bin:$PATH"
-alias gcc='gcc-5.3.0'
-alias cc='gcc-5.3.0'
-alias g++='g++-5.3.0'
-alias c++='c++-5.3.0'
-alias cpp='cpp-5.3.0'
+# export PATH="/usr/local/gcc-5.3.0/bin:$PATH"
+# alias gcc='gcc-5.3.0'
+# alias cc='gcc-5.3.0'
+# alias g++='g++-5.3.0'
+# alias c++='c++-5.3.0'
+# alias cpp='cpp-5.3.0'
 
-export C_INCLUDE_PATH="/usr/local/gcc-5.3.0/include:$C_INCLUDE_PATH"
-export CPLUS_INCLUDE_PATH="/usr/local/gcc-5.3.0/include:$CPLUS_INCLUDE_PATH" 
-export LIBRARY_PATH="/usr/local/lib:/usr/lib/:$LD_LIBRARY_PATH"
+# export C_INCLUDE_PATH="/usr/local/gcc-5.3.0/include:$C_INCLUDE_PATH"
+# export CPLUS_INCLUDE_PATH="/usr/local/gcc-5.3.0/include:$CPLUS_INCLUDE_PATH" 
+# export LIBRARY_PATH="/usr/local/lib:/usr/lib/:$LD_LIBRARY_PATH"
 #export LD_LIBRARY_PATH="/usr/local/gcc-5.3.0/lib" 
 
 #LATEX
-PATH=$PATH:/usr/local/texlive/2015/bin/x86_64-darwin/
+PATH="$PATH:/usr/local/texlive/2015/bin/x86_64-darwin/"
+# 
+export PATH="/Applications/Skim.app/Contents/MacOS/:$PATH"
+export PATH="$HOME/shscripts/:$PATH"
 #------------------------- /PATH Settings ------------------------------
 
 #-------------------------- alias -----------------------------------
@@ -56,19 +65,13 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 
-alias latexmk='latexmk -pvc'
+# alias latexmk='latexmk -pvc'
 
 # 現在 mongodb と redisを自動起動する設定にしている 
 #mongo server起動
-alias mongodrun='mongod --fork --config /usr/local/etc/mongod.conf &'
+# alias mongodrun='mongod --fork --config /usr/local/etc/mongod.conf &'
 #alias mongodon='mongod --dbpath /usr/local/var/db/mongo --journal'
-alias mongodrepair='mongod --dbpath /usr/local/var/db/mongo --repair'
-
-#meetpid用に mongo
-#alias mongodmprun='mongod --fork --logpath $HOME/Work/meetpid/meetpid-web/db/logs/log.txt --nojournal --noprealloc --dbpath $HOME/Work/meetpid/meetpid-web/db'
-#alias mongodrepair='mongod --dbpath $HOME/Work/meetpid/meetpid-web/db/mongo --repair'
-#mongo 起動確認
-#ps -ef | grep mongod
+# alias mongodrepair='mongod --dbpath /usr/local/var/db/mongo --repair'
 
 #redis 停止
 #alias redisoff='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
@@ -85,7 +88,7 @@ setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
 setopt prompt_subst      # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify            # バックグラウンドジョブの状態変化を即時報告する
 setopt equals            # =commandを`which command`と同じ処理にする
-
+setopt no_SHARE_HISTORY  # 複数開いたシェル間でのコマンド履歴共有なし
 ### Complement ###
 autoload -U compinit; compinit # 補完機能を有効にする
 setopt auto_list               # 補完候補を一覧で表示する(d)
@@ -98,12 +101,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小�
 
 # ------------------ oh-my-zsh setting (12/25, 2015)-----------------------
 
-# Set the theme: -->  ~/.oh-my-zsh/themes/
-# Theme:==> https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="random" <-- change everytime
-#ZSH_THEME="robbyrussell"
+#ZSH_THEME="af-magic"
 #ZSH_THEME="blinks"
-ZSH_THEME="af-magic"
+ZSH_THEME="bureau"
 
 # Time stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
@@ -129,4 +129,20 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-# ------------------ /oh-my-zsh setting ------------------------------
+
+
+# ------------------ Function setting ------------------------------
+#関数定義(引数3つ)
+tab-color() {
+    echo -ne "\033]6;1;bg;red;brightness;$1\a"
+    echo -ne "\033]6;1;bg;green;brightness;$2\a"
+    echo -ne "\033]6;1;bg;blue;brightness;$3\a"
+}
+
+tab-reset() {
+    echo -ne "\033]6;1;bg;*;default\a"
+}
+
+#function chpwd() { ls; echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
+#alias top='tab-color 134 200 0; top; tab-reset'
+alias ssh=~/shscripts/ssh-host-color

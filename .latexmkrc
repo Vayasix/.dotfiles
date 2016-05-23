@@ -5,8 +5,9 @@ $latex = 'platex -interaction=nonstopmode -kanji=utf-8 %O %S';
 $dvipdf = 'dvipdfmx %O -o %D %S'; 
 $bibtex = 'pbibtex -kanji=utf8';
 $biber = 'biber --bblencoding=utf8 -u -U --output_safechars';
+$max_repeat = 5;
 $pdf_mode = 3; # use dvipdf
-$pdf_update_method = 2;
+$pdf_update_method = 4;
 
 # PDF previewer
 $pdf_previewer = 'open -ga Preview %S';
