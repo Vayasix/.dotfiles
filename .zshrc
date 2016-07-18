@@ -22,18 +22,19 @@ if [ -d $HOME/.anyenv ] ; then
     do
         export PATH="$HOME/.anyenv/envs/$env/shims:$PATH"
         for ver in `ls $HOME/.anyenv/envs/$env/versions`
-            do
-                export PATH="$HOME/.anyenv/envs/$env/versions/$ver/bin:$PATH"
-            done
+        do
+            export PATH="$HOME/.anyenv/envs/$env/versions/$ver/bin:$PATH"
+        done
     done
-    
 fi
+
 # To use Homebrew's directories rather than ~/.pyenv add to your profile:
 # export PYENV_ROOT=/usr/local/var/pyenv
 #
 # To enable shims and autocompletion add to your profile:
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 #anaconda
 #export PATH="$HOME/anaconda/bin:$PATH"
@@ -143,6 +144,15 @@ tab-reset() {
     echo -ne "\033]6;1;bg;*;default\a"
 }
 
+pandoc_embed_html () {
+  pandoc --self-contained -s -t html5 --mathjax=$HOME/.pandoc/dynoload.js -c $HOME/.pandoc/github.css $@
+}
+
 #function chpwd() { ls; echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
 #alias top='tab-color 134 200 0; top; tab-reset'
+
 alias ssh=~/shscripts/ssh-host-color
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+source ~/.iterm2_shell_integration.`basename $SHELL`

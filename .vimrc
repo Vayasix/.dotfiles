@@ -2,10 +2,9 @@ if &compatible
   set nocompatible
 endif
 
-
 set runtimepath^=~/.vim/repos/github.com/Shougo/dein.vim
 
-call dein#begin(expand('/Users/hiroki/.vim/'))
+call dein#begin(expand('~/.vim/'))
 
 "these are good: https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/dein.toml
 call dein#add('Shougo/dein.vim')
@@ -27,8 +26,11 @@ call dein#add('tyru/caw.vim') "comment out
 call dein#add('KabbAmine/zeavim.vim') 
 call dein#add('vim-latex/vim-latex')
 call dein#add('lervag/vimtex')
-call dein#add('kannokanno/previm') " markdown 
 call dein#add('vim-scripts/vim-auto-save') " auto save w/o :w
+call dein#add('kannokanno/previm') " markdown preview 
+call dein#add('godlygeek/tabular') "aligning text using with vim-markdown  
+call dein#add('plasticboy/vim-markdown') " markdown  syntax
+call dein#add('thinca/vim-quickrun') 
 
 call dein#end()
 
@@ -42,6 +44,14 @@ endif
 "*************************************************************
 "" Setup Plugin's detail
 "*************************************************************
+" quick run {{{
+"let g:quickrun_config = get(g:, 'quickrun_config', {})
+"let g:quickrun_config._ = {
+"            \ 'runner'    : 'vimproc',
+"            \ 'runner/vimproc/updatetime' : 60,
+"            \ 'outputter/buffer/close_on_empty' : 1,
+"            \ }
+"}}}
 
 " yankround.vim {{{
 nmap p <Plug>(yankround-p)
