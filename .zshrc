@@ -59,26 +59,6 @@ export PATH="/Applications/Skim.app/Contents/MacOS/:$PATH"
 export PATH="$HOME/shscripts/:$PATH"
 #------------------------- /PATH Settings ------------------------------
 
-#-------------------------- alias -----------------------------------
-alias ls='ls -aF'
-alias ll='ls -l'
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
-
-# alias latexmk='latexmk -pvc'
-
-# 現在 mongodb と redisを自動起動する設定にしている 
-#mongo server起動
-# alias mongodrun='mongod --fork --config /usr/local/etc/mongod.conf &'
-#alias mongodon='mongod --dbpath /usr/local/var/db/mongo --journal'
-# alias mongodrepair='mongod --dbpath /usr/local/var/db/mongo --repair'
-
-#redis 停止
-#alias redisoff='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
-
-#-------------------------- /alias -----------------------------------
-
 # -------------------  zsh (12/25, 2015) ----------------------------------
 
 setopt no_beep           # ビープ音を鳴らさないようにする
@@ -100,37 +80,31 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小�
 
 # ---------------------- /zsh --------------------------------------------
 
-# ------------------ oh-my-zsh setting (12/25, 2015)-----------------------
+#-------------------------- alias -----------------------------------
+# alias ls='ls -aF'
+alias ll='ls -l'
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+alias vi=vim
 
-#ZSH_THEME="af-magic"
-#ZSH_THEME="blinks"
-ZSH_THEME="bureau"
+# ssh setting
+alias ssh=~/shscripts/ssh-host-color
 
-# Time stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
 
-#plugins ->  ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx bundler brew)
+# alias top='tab-color 134 200 0; top; tab-reset'
+# alias latexmk='latexmk -pvc'
 
-# User configuration
-source $ZSH/oh-my-zsh.sh
+# 現在 mongodb と redisを自動起動する設定にしている 
+# mongo server起動
+# alias mongodrun='mongod --fork --config /usr/local/etc/mongod.conf &'
+# alias mongodon='mongod --dbpath /usr/local/var/db/mongo --journal'
+# alias mongodrepair='mongod --dbpath /usr/local/var/db/mongo --repair'
 
-# manually set your language environment
-# export LANG=en_US.UTF-8
+# redis 停止
+# alias redisoff='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
+#-------------------------- /alias -----------------------------------
 
 # ------------------ Function setting ------------------------------
 #関数定義(引数3つ)
@@ -149,10 +123,10 @@ pandoc_embed_html () {
 }
 
 #function chpwd() { ls; echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
-#alias top='tab-color 134 200 0; top; tab-reset'
 
-alias ssh=~/shscripts/ssh-host-color
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 source ~/.iterm2_shell_integration.`basename $SHELL`
+
+
