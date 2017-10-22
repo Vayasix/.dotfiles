@@ -2,12 +2,19 @@
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # brew cask alias, ~/Applications --> /Applications (Added on 12/25,2015)
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
+export XDG_CONFIG_HOME=$HOME/.config
+# export MANPATH="/usr/local/man:$MANPATH"
+#
 #zsh-completions 
 fpath=(/usr/local/share/zsh-completions $fpath)
-# Path to your oh-my-zsh installation.
+#-------------------------- PATH Settings ------------------------------
 export ZSH=$HOME/.oh-my-zsh
-# export MANPATH="/usr/local/man:$MANPATH"
+export ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
+ZSH_THEME="spaceship"
+source ~/.zshrc.spaceship
+#source $ZSH_CUSTOM/themes/spaceship.zsh-theme
+plugins=(git, zsh-autosuggestions)
+source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
@@ -35,6 +42,7 @@ fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PYTHONIOENCODING=UTF-8
 
 #anaconda
 #export PATH="$HOME/anaconda/bin:$PATH"
@@ -71,7 +79,7 @@ setopt notify            # バックグラウンドジョブの状態変化を�
 setopt equals            # =commandを`which command`と同じ処理にする
 setopt no_SHARE_HISTORY  # 複数開いたシェル間でのコマンド履歴共有なし
 ### Complement ###
-autoload -U compinit; compinit # 補完機能を有効にする
+autoload -Uz compinit; compinit -u      # 補完機能を有効にする
 setopt auto_list               # 補完候補を一覧で表示する(d)
 setopt auto_menu               # 補完キー連打で補完候補を順に表示する(d)
 setopt list_packed             # 補完候補をできるだけ詰めて表示する
@@ -87,9 +95,10 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias vi=vim
+#alias vim=nvim
 
 # ssh setting
-alias ssh=~/shscripts/ssh-host-color
+#alias ssh=~/shscripts/ssh-host-color
 
 
 # alias top='tab-color 134 200 0; top; tab-reset'
@@ -124,9 +133,5 @@ pandoc_embed_html () {
 
 #function chpwd() { ls; echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
 
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-source ~/.iterm2_shell_integration.`basename $SHELL`
-
-
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#source ~/.iterm2_shell_integration.`basename $SHELL`
