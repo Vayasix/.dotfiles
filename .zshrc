@@ -95,7 +95,7 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias vi=vim
-#alias vim=nvim
+alias vim=nvim
 
 # ssh setting
 #alias ssh=~/shscripts/ssh-host-color

@@ -1,0 +1,83 @@
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+if = "!has('nvim')"
+on_i = 1
+hook_source = '''
+    let g:neocomplete#enable_at_startup = 1
+    source ~/.vim/rc/plugins/neocomplete.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['neosnippet-snippets']
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+if = "!has('nvim')"
+on_cmd = 'Unite'
+depends = ['neomru.vim']
+hook_source = 'source ~/.vim/rc/plugins/unite.rc.vim'
+hook_add = '''
+    " Prefix key
+    nnoremap [unite] <Nop>
+    nmap <Space>u [unite]
+    " Keymap
+    " Current direcotry files
+    nnoremap <silent> [unite]<C-p> :<C-u>Unite<Space>file_rec/async:!<CR>
+    " Buffer files
+    nnoremap <silent> [unite]<C-b> :<C-u>Unite buffer<CR>
+    " Grep files
+    nnoremap <silent> [unite]<C-g> :<C-u>Unite<Space>grep -buffer-name=search -auto-preview -no-quit -no-empty -resume<CR>
+    " Recent files
+    nnoremap <silent> [unite]<C-r> :<C-u>Unite file_mru buffer<CR>
+    " Yank history
+    nnoremap <silent> [unite]<C-y> :<C-u>Unite history/yank<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+on_ft = ['md']
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+
+[[plugins]]
+repo = 'osyo-manga/shabadou.vim'
+hook_source = '''
+'''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+depends = ['vimproc.vim', 'shabadou.vim']
+on_ft = ['python']
+hook_source = '''
+  source ~/.vim/rc/plugins/vimquickrun.rc.vim
+'''
+
+[[plugins]]
+repo = 'neomake/neomake'
+on_ft = ['python']
+hook_source = '''
+    autocmd! BufEnter,BufWritePost * Neomake
+    let g:neomake_python_enabled_makers = ['python', 'flake8']
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_cmd = 'EasyAlign'
+hook_add = '''
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
+'''
