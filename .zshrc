@@ -38,11 +38,15 @@ fi
 # To use Homebrew's directories rather than ~/.pyenv add to your profile:
 # export PYENV_ROOT=/usr/local/var/pyenv
 #
+
 # To enable shims and autocompletion add to your profile:
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYTHONIOENCODING=UTF-8
+
+#source `which virtualenvwrapper.sh`
+#export WORKON_HOME=~/.virtualenvs
 
 #anaconda
 #export PATH="$HOME/anaconda/bin:$PATH"
@@ -96,6 +100,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias vi=vim
 alias vim=nvim
+alias rm='trash'
 
 # ssh setting
 #alias ssh=~/shscripts/ssh-host-color
