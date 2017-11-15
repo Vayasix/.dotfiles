@@ -48,6 +48,10 @@ export PYTHONIOENCODING=UTF-8
 #source `which virtualenvwrapper.sh`
 #export WORKON_HOME=~/.virtualenvs
 
+# Google Cloud Platform SDK setting
+source $HOME/Scripts/google-cloud-sdk/completion.zsh.inc
+source $HOME/Scripts/google-cloud-sdk/path.zsh.inc
+
 #anaconda
 #export PATH="$HOME/anaconda/bin:$PATH"
 
@@ -65,10 +69,10 @@ export PYTHONIOENCODING=UTF-8
 #export LD_LIBRARY_PATH="/usr/local/gcc-5.3.0/lib" 
 
 #LATEX
-PATH="$PATH:/usr/local/texlive/2015/bin/x86_64-darwin/"
+#PATH="$PATH:/usr/local/texlive/2015/bin/x86_64-darwin/"
 # 
-export PATH="/Applications/Skim.app/Contents/MacOS/:$PATH"
-export PATH="$HOME/shscripts/:$PATH"
+#export PATH="/Applications/Skim.app/Contents/MacOS/:$PATH"
+#export PATH="$HOME/shscripts/:$PATH"
 #------------------------- /PATH Settings ------------------------------
 
 # -------------------  zsh (12/25, 2015) ----------------------------------
@@ -117,6 +121,16 @@ alias rm='trash'
 
 # redis 停止
 # alias redisoff='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
+
+
+
+# Google Cloud Platform
+## project: dlp
+### google-computing-engine
+#### Instance 1 >> Name: dlp-recommend-1, PW: dlp-recommend-1
+alias sshdlp='gcloud compute ssh dlp-recommend-1'
+#### Instance 2 >> Name: ???, PW: ???
+
 
 #-------------------------- /alias -----------------------------------
 
