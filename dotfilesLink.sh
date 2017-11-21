@@ -2,7 +2,7 @@
 
 ln -sf ~/.dotfiles/.vim ~/.vim
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
-ln -s ~/.vimrc ~/.config/nvim/init.vim
+ln -sf ~/.vimrc ~/.config/nvim/init.vim
 
 ln -sf ~/.dotfiles/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/.zshrc.spaceship ~/.zshrc.spaceship 
