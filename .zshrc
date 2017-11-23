@@ -131,6 +131,8 @@ alias rm='trash'
 alias sshdlp='gcloud compute ssh dlp-recommend-1'
 #### Instance 2 >> Name: ???, PW: ???
 
+alias asana="url https://app.asana.com/0/474789079833566/list"
+
 
 #-------------------------- /alias -----------------------------------
 
@@ -154,3 +156,8 @@ pandoc_embed_html () {
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #source ~/.iterm2_shell_integration.`basename $SHELL`
+
+url() {
+    open -a /Applications/Google\ Chrome.app $1
+}
+
