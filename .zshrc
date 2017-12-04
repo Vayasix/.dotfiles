@@ -132,6 +132,10 @@ alias sshdlp='gcloud compute ssh dlp-recommend-1'
 #### Instance 2 >> Name: ???, PW: ???
 
 alias asana="url https://app.asana.com/0/474789079833566/list"
+alias freee="url https://secure.freee.co.jp/users/login/"
+alias gdrive="url https://drive.google.com/drive/u/0/my-drive"
+alias inbox="url https://inbox.google.com/u/0/?cid=imp&pli=1"
+
 
 
 #-------------------------- /alias -----------------------------------
